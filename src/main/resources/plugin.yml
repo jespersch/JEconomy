@@ -1,0 +1,28 @@
+name: JEconomy
+main: me.jesper.sch.jeconomy.JEconomy
+version: 1.0
+depends: [Vault]
+api-version: 1.19
+commands:
+  jeconomy:
+    usage: /<command>
+    description: poop
+
+  balance:
+    usage: /<command>
+
+  pay:
+    usage: /<command> <player> <amount>
+
+  bounty:
+    usage: /<command> <player> <amount>
+
+  shop:
+    usage: /<command>
+
+  sell:
+    usage: /<command>
+
+  auction:
+    usage: /<command>
+

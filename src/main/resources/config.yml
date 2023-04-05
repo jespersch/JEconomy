@@ -1,0 +1,24 @@
+uri: mongodb+srv://jesperschilte:Jesper17389382@cluster.49d4p2g.mongodb.net/?retryWrites=true&w=majority
+
+name: Jesper
+
+#Spawner/Egg Values
+SPAWNER:
+  value: 100000
+
+COW:
+  value: 2000
+
+
+
+
+
+
+
+# Sell Values
+
+WHEAT:
+  value: 5
+
+SUGAR_CANE:
+  value: 10
