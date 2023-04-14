@@ -12,6 +12,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -111,7 +112,8 @@ public class ShopCommand implements CommandExecutor, Listener {
         int price = getValue(item.getType());
         double balance = economy.getBalance(p.getUniqueId().toString());
         if(balance >= price){
-            p.getInventory().addItem(item);
+            ItemStack ItemBuy = new ItemStack(Material.matchMaterial(item.getType().toString()));
+            p.getInventory().addItem(ItemBuy);
             economy.withdrawPlayerNoMSG(p.getUniqueId().toString(), price * item.getAmount());
 
             MessageManager.playerNeutral(p, "Je hebt een " + ChatColor.GREEN + item.getType().name() + ChatColor.AQUA + " gekocht voor: " +ChatColor.YELLOW + "€"+ price * item.getAmount());
@@ -137,7 +139,8 @@ public class ShopCommand implements CommandExecutor, Listener {
     }
     public void initSectionSpawnerItems(){
         ItemStack spawneritem = createMenuItem(Material.SPAWNER, ChatColor.GOLD + "Spawner",ChatColor.YELLOW + "€" + getValue(Material.SPAWNER) ,"Nutteloos zonder ei");
-        ItemStack creeperEgg = createMenuItem(Material.CREEPER_SPAWN_EGG, ChatColor.GREEN + "Creeper " + ChatColor.GOLD + "Spawner",ChatColor.YELLOW + "€" + getValue(Material.SPAWNER) ,"Gebruikt om spawners in te stellen");
+        ItemStack blazeEgg = createMenuItem(Material.BLAZE_SPAWN_EGG, ChatColor.GOLD + "Blaze " + ChatColor.GOLD + "Egg",ChatColor.YELLOW + "€" + getValue(Material.BLAZE_SPAWN_EGG) ,"Gebruikt om spawners in te stellen");
+        ItemStack creeperEgg = createMenuItem(Material.CREEPER_SPAWN_EGG, ChatColor.GREEN + "Creeper " + ChatColor.GOLD + "Egg",ChatColor.YELLOW + "€" + getValue(Material.CREEPER_SPAWN_EGG) ,"Gebruikt om spawners in te stellen");
         ItemStack fillItem = createMenuItem(Material.GRAY_STAINED_GLASS_PANE, "", "");
         for(int slot = 0; slot < spawner.getSize(); slot++) {
             if(spawner.getItem(slot) == null) {
@@ -147,14 +150,16 @@ public class ShopCommand implements CommandExecutor, Listener {
         }
             spawner.clear();
             spawner.setItem(4, spawneritem);
-            spawner.setItem(22, creeperEgg);
-
+            spawner.setItem(21, creeperEgg);
+            spawner.setItem(23, blazeEgg);
     }
 
 
 
     public void initSectionMiscItems(){
         ItemStack sectionitem = createMenuItem(Material.BOOK, ChatColor.AQUA + "Book",ChatColor.YELLOW + "€" + getValue(Material.BOOK));
+        ItemStack slimeBlock = createMenuItem(Material.SLIME_BLOCK, ChatColor.AQUA + "Slime block",ChatColor.YELLOW + "€" + getValue(Material.SLIME_BLOCK));
+
         ItemStack fillItem = createMenuItem(Material.GRAY_STAINED_GLASS_PANE, "", "");
         for(int slot = 0; slot < misc.getSize(); slot++) {
             if(misc.getItem(slot) == null) {
@@ -163,7 +168,8 @@ public class ShopCommand implements CommandExecutor, Listener {
 
         }
         if(!misc.contains(sectionitem)){
-            misc.setItem(4, sectionitem);}
+            misc.setItem(12, sectionitem);}
+            misc.setItem(14, slimeBlock);
 
     }
 

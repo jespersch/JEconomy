@@ -3,6 +3,7 @@ package me.jesper.sch.jeconomy;
 import me.jesper.sch.jeconomy.commands.AuctionCommand;
 import me.jesper.sch.jeconomy.commands.SellCommand;
 import me.jesper.sch.jeconomy.commands.ShopCommand;
+import me.jesper.sch.jeconomy.commands.UpgradeCommand;
 import me.jesper.sch.jeconomy.commands.manager.CommandManager;
 import me.jesper.sch.jeconomy.player.PlayerEconomyEvents;
 import me.jesper.sch.jeconomy.player.PlayerEvents;
@@ -74,6 +75,8 @@ public final class JEconomy extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new SellCommand(), this);
         getServer().getPluginManager().registerEvents(new AuctionCommand(), this);
         getServer().getPluginManager().registerEvents(new ShopCommand(), this);
+        getServer().getPluginManager().registerEvents(new UpgradeCommand(), this);
+
     }
     @Override
     public void onDisable() {

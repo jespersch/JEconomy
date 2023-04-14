@@ -26,3 +26,6 @@ commands:
   auction:
     usage: /<command>
 
+  upgrade:
+    usage: /<command>
+

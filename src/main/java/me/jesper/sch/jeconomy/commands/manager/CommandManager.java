@@ -26,6 +26,7 @@ public class CommandManager implements CommandExecutor {
         plugin.getCommand("bounty").setExecutor(new BountyCommand());
         plugin.getCommand("shop").setExecutor(new ShopCommand());
         plugin.getCommand("auction").setExecutor(new AuctionCommand());
+        plugin.getCommand("upgrade").setExecutor(new UpgradeCommand());
         plugin.getCommand("sell").setExecutor(new SellCommand());
         this.commands.add(new CreatePlayerAccountCommand());
 
