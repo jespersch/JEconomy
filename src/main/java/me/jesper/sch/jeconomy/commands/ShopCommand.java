@@ -190,7 +190,7 @@ public class ShopCommand implements CommandExecutor, Listener {
         FileConfiguration config = plugin.getConfig();
         String value;
         String itemname = item.toString();
-        value = config.getString(itemname + ".value");
+        value = config.getString(itemname + ".buy");
         int itemValue = Integer.parseInt(value);
 
 

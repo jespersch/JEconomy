@@ -97,11 +97,11 @@ public class UpgradeCommand implements CommandExecutor, Listener{
         ent.openInventory(inv);
     }
 
-    public void enchantUpgrade(Player player, ItemStack tool, Enchantment ench){
+    public void enchantUpgrade(Player player, ItemStack tool, Enchantment ench, boolean levels){
         int currentLevelTool = tool.getEnchantmentLevel(ench);
         int levelsNeeded = (currentLevelTool * 15) + 15;
         int moneyNeeded = (currentLevelTool * 25000) + 100000;
-        if (currentLevelTool > 0 && !tool.getEnchantments().containsKey(Enchantment.DAMAGE_ALL)){
+        if (currentLevelTool > 0 && levels == true){
             if(player.getLevel() >= levelsNeeded){
                 player.giveExpLevels(-levelsNeeded);
                 tool.addUnsafeEnchantment(ench, currentLevelTool + 1);
@@ -116,7 +116,7 @@ public class UpgradeCommand implements CommandExecutor, Listener{
             MessageManager.playerBad(player, "Je hebt deze enchant niet.");
         }
 
-        if (currentLevelTool > 0 && tool.getEnchantments().containsKey(Enchantment.DAMAGE_ALL)){
+        if (currentLevelTool > 0 && levels == false){
             if(economy.getBalance(player.getUniqueId().toString()) >= moneyNeeded){
                 economy.withdrawPlayerNoMSG(player.getUniqueId().toString(), moneyNeeded);
                 tool.addUnsafeEnchantment(ench, currentLevelTool + 1);
@@ -138,16 +138,16 @@ public class UpgradeCommand implements CommandExecutor, Listener{
         ItemStack currentTool = player.getInventory().getItemInMainHand();
         if(e.getView().getTitle().equals("Upgrade menu")) {
             if(e.getCurrentItem().equals(fortune)){
-                enchantUpgrade(player, currentTool, Enchantment.LOOT_BONUS_BLOCKS);
+                enchantUpgrade(player, currentTool, Enchantment.LOOT_BONUS_BLOCKS, true);
             }
             if(e.getCurrentItem().equals(looting)){
-                enchantUpgrade(player, currentTool, Enchantment.LOOT_BONUS_MOBS);
+                enchantUpgrade(player, currentTool, Enchantment.LOOT_BONUS_MOBS, true);
             }
             if(e.getCurrentItem().equals(sweeping)){
-                enchantUpgrade(player, currentTool, Enchantment.SWEEPING_EDGE);
+                enchantUpgrade(player, currentTool, Enchantment.SWEEPING_EDGE, true);
             }
             if(e.getCurrentItem().equals(damage)){
-                enchantUpgrade(player, currentTool, Enchantment.DAMAGE_ALL);
+                enchantUpgrade(player, currentTool, Enchantment.DAMAGE_ALL, false);
             }
             e.setCancelled(true);
             }
